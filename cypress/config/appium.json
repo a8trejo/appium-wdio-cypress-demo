@@ -1,0 +1,14 @@
+{
+  "androidDevice": "DemoAVD",
+  "androidApp": "wdio/apk/ApiDemos-debug.apk",
+  "platform": "Android",
+  "launchTimeout": 12000,
+  "headless": false,
+  "retries": 3,
+  "appsMeta": {
+    "Playground": {
+      "apk_name": "ApiDemos-debug.apk",
+      "package_name": "com.example.android"
+    }
+  }
+}

@@ -5,3 +5,4 @@ Background: Authorized access
 
 Scenario: Open and close a basic auth promt
     When I click on the 'Basic Auth' demo option
+    Then I open the 'Playground' app in the Android 'DemoAVD' device
