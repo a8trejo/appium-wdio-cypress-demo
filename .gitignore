@@ -17,6 +17,7 @@ node_modules/
 *.mov
 *.wmv
 
-# Test Reports and Outputs
+# Cypress
+cypress.env.json
 cypress/results/*
 
