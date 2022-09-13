@@ -4,7 +4,7 @@
   "platform": "Android",
   "launchTimeout": 12000,
   "headless": false,
-  "retries": 3,
+  "retries": 1,
   "appsMeta": {
     "Playground": {
       "apk_name": "ApiDemos-debug.apk",

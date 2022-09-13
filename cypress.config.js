@@ -64,7 +64,7 @@ async function setupNodeEvents(on, config) {
     },
     androidAVDStart({avdName, headless, port, linux=true}){
       //Example: /Users/atrejo/Library/Android/sdk/emulator/emulator -avd Pixel_4_API_26 -no-window -port 5554
-      const avdCommand = linux ? '$ANDROID_HOME/emulator/emulator': '"%ANDROID_HOME%/emulator/emulator.exe"'
+      const avdCommand = linux ? 'emulator': '"emulator.exe"'
 
       exec(avdCommand + ' -avd ' + avdName + ' -no-boot-anim -no-audio ' + headless + port, (error, stdout, stderr) => {
         //console.log(stdout)

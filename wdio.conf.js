@@ -24,7 +24,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './wdio/specs/*.js'
+        './wdio/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -70,8 +70,9 @@ exports.config = {
         //automationName: 'UiAutomator2',
 
 		platformName: appiumJson.platform,
+        'appium:automationName': 'uiautomator2',
         'appium:deviceName' : appiumJson.androidDevice,
-        'appium:app' : path.resolve('../', appiumJson.androidApp ),
+        'appium:app' : path.resolve('./', appiumJson.androidApp ),
         //'appium:launchTimeout': appiumJson.launchTimeout,
 
         //How long (in seconds) Appium will wait for a new command from the client before assuming the client quit and ending the session
