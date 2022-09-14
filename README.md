@@ -71,6 +71,7 @@ export PATH=$ANDROID_HOME/platform-tools:$PATH
 
 Test with
 `emulator -list-avds`
+`avdmanager list`
 
 #### Port Commands
 `lsof -i :4723`
