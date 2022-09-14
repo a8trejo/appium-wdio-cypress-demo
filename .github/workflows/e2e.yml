@@ -34,28 +34,26 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      #- name: Download Android API Level
-      #  run: sdkmanager "platforms;android-33"
+      - name: Create AVD
+        run: avdmanager create avd -n DemoAVD -k "system-images;android-33;google_apis;x86_64" -d pixel
       
-      - name: Create AVD and generate snapshot for caching
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          avd-name: DemoAVD
-          api-level: 33
-          target: google_apis
-          arch: x86_64
-          force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: false
-          script: echo "Generated AVD snapshot"
+      # - name: Create AVD and generate snapshot for caching
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     avd-name: DemoAVD
+      #     api-level: 33
+      #     target: google_apis
+      #     arch: x86_64
+      #     force-avd-creation: false
+      #     emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+      #     disable-animations: false
+      #     script: echo "Generated AVD snapshot"
 
       - name: Download AVD APK
         run: |
           mkdir wdio/apk
+          cd cypress/config/cucumber_json
           curl https://github.com/appium/appium/blob/master/packages/appium/sample-code/apps/ApiDemos-debug.apk -o ApiDemos-debug.apk
-          avdmanager list
-          emulator -list-avds
-          adb devices
           
       # # Setting environment
       # - name: Set Up Environment
