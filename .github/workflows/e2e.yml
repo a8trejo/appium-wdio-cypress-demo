@@ -35,7 +35,10 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Create AVD
-        run: avdmanager create avd -n DemoAVD -k "system-images;android-33;google_apis;x86_64" -d pixel
+        run: |
+          sdkmanager "system-images;android-23;google_apis;x86_64"
+          yes | sdkmanager --licenses
+          avdmanager create avd -n DemoAVD -k "system-images;android-33;google_apis;x86_64" -d pixel
       
       # - name: Create AVD and generate snapshot for caching
       #   uses: reactivecircus/android-emulator-runner@v2
