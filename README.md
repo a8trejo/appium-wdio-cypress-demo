@@ -19,7 +19,7 @@ If this is the first time the repository is cloned, in order to set up your loca
 
 6. Open the Android SDK Manager, expand the **Android Version** with `API Level 30`, click on `Show Package Details`, select and install `Google APIs Intel x86 Atom System Image`.
 
-7. Create at least **one Android AVD**. You can use this command to create a new AVD `avdmanager create avd -n DemoAVD -k "system-images;android-30;google_apis;x86" -d pixel`.
+7. Create at least **one Android AVD**. You can use this command to create a new AVD `avdmanager create avd -n DemoAVD -k "system-images;android-33;google_apis;x86_64" -d pixel`.
 
 8. In the file `cypress/e2e/Playground.feature`, update the value `DemoAVD` for **your respective AVD ID**, if you renamed it.
 
@@ -48,7 +48,7 @@ For custom tags, modify the TAG environment variable in the file `/cypress.confi
 ---
 #### APPIUM EXECUTION ONLY
 If you wish to execute only the appium webdriver I/O script, do the following:
-1. Start the respective Android AVD manually, terminal command: `emulator -avd Pixel_3a_API_33_arm64-v8a`
+1. Start the respective Android AVD manually, terminal command: `emulator -avd DemoAVD`
 2. Start the Appium Server manually, terminal command: `appium &`
 3. Execute the following commands in the project's terminal:
 ```

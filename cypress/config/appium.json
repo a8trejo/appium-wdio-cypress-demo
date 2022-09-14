@@ -1,6 +1,6 @@
 {
   "capabilities": {
-    "androidDevice": "Pixel_3a_API_33_arm64-v8a",
+    "androidDevice": "DemoAVD",
     "androidApp": "wdio/apk/ApiDemos-debug.apk",
     "platform": "Android",
     "launchTimeout": 12000,
