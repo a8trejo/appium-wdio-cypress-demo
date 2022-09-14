@@ -15,5 +15,6 @@ wdio/apk
 
 # Cypress
 cypress.env.json
+cypress/config/cucumber_json
 cypress/results/*
 
