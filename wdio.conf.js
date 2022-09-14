@@ -7,21 +7,17 @@ exports.config = {
     // Runner Configuration
     // ====================
     //
-    //
     // ==================
     // Specify Test Files
     // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // from which `wdio` was called.
+    // The pattern is relative to the directory from which `wdio` was called.
     //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
+    // The specs are defined as an array of spec files (optionally using wildcards that will be expanded). 
+    // The test for each spec file run in a separate worker process. In order to have a group of spec files run in the same worker
     // process simply enclose them in an array within the specs array.
     //
     // If you are calling `wdio` from an NPM script (see https://docs.npmjs.com/cli/run-script),
-    // then the current working directory is where your `package.json` resides, so `wdio`
-    // will be called from there.
+    // then the current working directory is where your `package.json` resides, so `wdio` will be called from there.
     //
     specs: [
         './wdio/specs/**/*.js'
@@ -66,18 +62,19 @@ exports.config = {
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
         port: 4723,
+        // path: '/',
         path: '/wd/hub',
-        //automationName: 'UiAutomator2',
+        // automationName: 'uiautomator2',
 
-		platformName: appiumJson.platform,
+		platformName: appiumJson.capabilities.platform,
         'appium:automationName': 'uiautomator2',
-        'appium:deviceName' : appiumJson.androidDevice,
-        'appium:app' : path.resolve('./', appiumJson.androidApp ),
+        'appium:deviceName' : appiumJson.capabilities.androidDevice,
+        'appium:app' : path.resolve('./', appiumJson.capabilities.androidApp ),
         //'appium:launchTimeout': appiumJson.launchTimeout,
 
         //How long (in seconds) Appium will wait for a new command from the client before assuming the client quit and ending the session
         'appium:newCommandTimeout': 120,
-        'appium:isHeadless': appiumJson.headless,
+        'appium:isHeadless': appiumJson.capabilities.headless,
         //Android Only
         //------------------------------------------------------------------------------------------------
         'appium:dontStopAppOnReset': true,
@@ -153,8 +150,6 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec'],
-
-
     
     //
     // Options to be passed to Mocha.

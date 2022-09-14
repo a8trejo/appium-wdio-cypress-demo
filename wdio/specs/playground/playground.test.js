@@ -9,7 +9,7 @@ describe ('Playground Actions', () => {
         // driver.setNetworkConnection(6);
     })
 
-    it ('tabs and input text', async () => {
+    it('tabs and input text', async () => {
         console.log("----------------------------------------------------------")
         console.log("Tabs and Input Test Case")
         console.log("----------------------------------------------------------")

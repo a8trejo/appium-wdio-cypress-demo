@@ -5,23 +5,25 @@ If this is the first time the repository is cloned, in order to set up your loca
 
 1. Execute the following commands in the project's terminal (if using Windows, run terminal as admin instead of using `sudo`):
 ```
-    $ sudo npm install -g appium --unsafe-perm=true --allow-root
+    $ sudo npm install -g appium
     $ npm install
 ```
 
-2. Open the Android SDK Manager, go to **SDK Tools** and click on `Android SDK Command-line Tools` to install it, click `Ok`.
+2. Make sure you have installed Android SDK
 
-3. Make sure you have installed Android SDK, `ANDROID_HOME`, `ANDROID_AVD_HOME` and `JAVA_HOME` env variables configured
+3. Open the Android SDK Manager, go to **SDK Tools** and click on `Android SDK Command-line Tools` to install it, click `Ok`.
 
-4. Download the APK located in https://github.com/appium/appium/blob/master/packages/appium/sample-code/apps/ApiDemos-debug.apk
+4. Add the following system variables to your `$PATH`: `ANDROID_HOME`, `ANDROID_SDK_ROOT`, `ANDROID_AVD_HOME` and `JAVA_HOME`
 
-5. Open the Android SDK Manager, expand the **Android Version** with `API Level 30`, click on `Show Package Details`, select and install `Google APIs Intel x86 Atom System Image`.
+5. Download the APK located in https://github.com/appium/appium/blob/master/packages/appium/sample-code/apps/ApiDemos-debug.apk
 
-6. Create at least **one Android AVD**. You can use this command to create a new AVD `avdmanager create avd -n DemoAVD -k "system-images;android-30;google_apis;x86" -d pixel`.
+6. Open the Android SDK Manager, expand the **Android Version** with `API Level 30`, click on `Show Package Details`, select and install `Google APIs Intel x86 Atom System Image`.
 
-7. In the file `cypress/e2e/Playground.feature`, update the value `DemoAVD` for **your respective AVD ID**, if you renamed it.
+7. Create at least **one Android AVD**. You can use this command to create a new AVD `avdmanager create avd -n DemoAVD -k "system-images;android-30;google_apis;x86" -d pixel`.
 
-8. Test the correct setUp by running the Appium Script first, follow the instructions below in **APPIUM EXECUTION ONLY**
+8. In the file `cypress/e2e/Playground.feature`, update the value `DemoAVD` for **your respective AVD ID**, if you renamed it.
+
+9. Test the correct setUp by running the Appium Script first, follow the instructions below in **APPIUM EXECUTION ONLY**
 
 ---
 #### TEST EXECUTION (Cypress + Appium)
@@ -60,10 +62,11 @@ If you wish to execute all of the scripts inside the spec file, remove the `moch
 #### Android System Variables
 ```
 # Android Studio
-export ANDROID_HOME=/Users/atrejop/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export ANDROID_HOME=/Users/username/Library/Android/sdk
+export ANDROID_SDK_ROOT=/Users/username/Library/Android/sdk
+export PATH=$ANDROID_HOME/emulator:$PATH
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
 ```
 
 Test with
@@ -82,12 +85,14 @@ Test with
 
 #### Appium Server Start
 `$ sudo npm install -g appium`
+`$ sudo npm install -g appium --unsafe-perm=true --allow-root`
 https://github.com/appium/appium-inspector/releases
 `appium -p 4723 &`
 
 #### Appium Script Execution
 `npx wdio run ./wdio.conf.js --spec "SPEC_NAME.js" --mochaOpts.grep "warning"`
 
-#### DataDog Logs
+#### Misc
 https://stackoverflow.com/questions/38399465/how-to-get-list-of-all-timezones-in-javascript
+https://webdriver.io/docs/api/element/touchAction
 

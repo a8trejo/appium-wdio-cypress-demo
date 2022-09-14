@@ -1,14 +1,17 @@
 {
-  "androidDevice": "DemoAVD",
-  "androidApp": "wdio/apk/ApiDemos-debug.apk",
-  "platform": "Android",
-  "launchTimeout": 12000,
-  "headless": false,
-  "retries": 1,
+  "capabilities": {
+    "androidDevice": "Pixel_3a_API_33_arm64-v8a",
+    "androidApp": "wdio/apk/ApiDemos-debug.apk",
+    "platform": "Android",
+    "launchTimeout": 12000,
+    "headless": false,
+    "retries": 3
+  },
   "appsMeta": {
     "Playground": {
-      "apk_name": "ApiDemos-debug.apk",
-      "package_name": "com.example.android"
+      "apkName": "ApiDemos-debug",
+      "packageName": "com.example.android",
+      "specPath": "wdio/specs/playground/playground.test.js"
     }
   }
 }
