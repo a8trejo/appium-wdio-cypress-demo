@@ -117,11 +117,12 @@ async function emulatorStart(avdStartCmd, avdCheckCmd) {
   const avdCheckAttempts = 5
   let avdOn = false
   let avdMsg
+  let avdOutput
   let i = 0
 
   console.log(avdStartCmd)
   exec(avdStartCmd, (error, stdout, stderr) => {
-    let avdOutput = `AVD stdout: ${stdout}`
+    avdOutput = `AVD stdout: ${stdout}`
     if (stderr) {
       avdOutput = `${avdOutput}\nAVD stderror: ${stderr}`
       console.log(`AVD stderror: ${stderr}`);
@@ -130,8 +131,6 @@ async function emulatorStart(avdStartCmd, avdCheckCmd) {
       avdOutput = `${avdOutput}\nAVD Error: ${error.message}`
       console.log(`AVD Error: ${error.message}`);
     }
-    // Might not be needed as it is too much noise
-    // console.log(avdOutput);
   })
   while(avdOn === false && i <= avdCheckAttempts) {
     await sleep(3000)
@@ -152,6 +151,7 @@ async function emulatorStart(avdStartCmd, avdCheckCmd) {
     avdMsg = 'Success: Android AVD Started!!!'
   } else {
     avdMsg = "Android AVD Initialization Failed!!!!"
+    console.log(avdOutput);
   }
   console.log(avdMsg)
   return avdMsg
@@ -161,11 +161,12 @@ async function appiumStart(appiumStartCmd, appiumCheckCmd) {
   const appiumCheckAttempts = 5
   let appiumOn = false
   let appiumMsg
+  let appiumOutput
   let i = 0
 
   console.log(appiumStartCmd)
   exec(appiumStartCmd, (error, stdout, stderr) => {
-    let appiumOutput = `Appium stdout: ${stdout}`
+    appiumOutput = `Appium stdout: ${stdout}`
     if (stderr) {
       appiumOutput = `${appiumOutput}\nAppium stderror: ${stderr}`
       console.log(`Appium stderror: ${stderr}`)
@@ -196,6 +197,7 @@ async function appiumStart(appiumStartCmd, appiumCheckCmd) {
     appiumMsg = 'Success: Appium Server Started!!!'
   } else {
     appiumMsg = "Appium Server Initialization Failed!!!!"
+    console.log(appiumOutput);
   }
   console.log(appiumMsg)
   return appiumMsg
