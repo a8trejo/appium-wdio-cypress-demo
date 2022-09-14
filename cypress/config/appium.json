@@ -4,7 +4,7 @@
     "androidApp": "wdio/apk/ApiDemos-debug.apk",
     "platform": "Android",
     "launchTimeout": 12000,
-    "headless": false,
+    "headless": true,
     "retries": 3
   },
   "appsMeta": {

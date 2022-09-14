@@ -35,7 +35,7 @@ module.exports = defineConfig({
         "appiumCapabilitiesPath": "cypress/config/appium.json",
         "androidPort": "5554",
         "apkPath": "wdio/apk",
-        "avdHeadless": false,
+        "avdHeadless": true,
     },
     setupNodeEvents,
   }
