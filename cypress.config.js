@@ -72,15 +72,8 @@ async function setupNodeEvents(on, config) {
       return appiumMsg;
     }
   });
-
-  const envKey = config.env.envKey || 'default';
-  config.env.TEST_TRIGGER = 'local';
-
-  if (envKey !== 'default') {
-    return getConfigByFile(envKey, config);
-  } else {
-    return config;
-  }
+  
+  return config;
 }
 
 function cleanReports() {
@@ -88,17 +81,6 @@ function cleanReports() {
     if (fs.existsSync(reportPath)) {
         fs.rmdirSync('./cypress/results/reports', { recursive: true });
     }
-};
-
-function getConfigByFile(envKey, config) {
-  let fileName = `cypress_${envKey}.json`
-  console.log("Config file: " + fileName);
-
-  let rawData = fs.readFileSync(`cypress/config/${fileName}`);
-  let newConfig = JSON.parse(rawData);
-
-  config = {...config, ...newConfig}
-  return config;
 };
 
 function readGitHubSecrets(config) {
