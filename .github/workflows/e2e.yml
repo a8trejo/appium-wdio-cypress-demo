@@ -62,6 +62,7 @@ jobs:
       # Setting environment
       - name: Set Up Environment
         run: |
+          echo "APPIUM_SKIP_CHROMEDRIVER_INSTALL=1" >> $GITHUB_ENV
           echo "TEST_ENVIRONMENT=${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}" >> $GITHUB_ENV
           mkdir cypress/config/cucumber_json
           echo "${{ github.workspace }}/cypress/config/cucumber_json" >> $GITHUB_PATH
