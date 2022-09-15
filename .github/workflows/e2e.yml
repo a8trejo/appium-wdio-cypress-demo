@@ -67,7 +67,7 @@ jobs:
           mkdir cypress/config/cucumber_json
           echo "${{ github.workspace }}/cypress/config/cucumber_json" >> $GITHUB_PATH
           cd cypress/config/cucumber_json
-          curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-linux-amd64 -o cucumber-json-formatter
+          curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-darwin-amd64 -o cucumber-json-formatter
           chmod +x cucumber-json-formatter
 
       #NPM Installation and Cypress execution
