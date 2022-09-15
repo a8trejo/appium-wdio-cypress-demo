@@ -56,7 +56,7 @@ jobs:
       - name: Download AVD APK
         run: |
           mkdir wdio/apk
-          cd cypress/config/cucumber_json
+          cd wdio/apk
           curl https://github.com/appium/appium/blob/master/packages/appium/sample-code/apps/ApiDemos-debug.apk -o ApiDemos-debug.apk
           
       # Setting environment
