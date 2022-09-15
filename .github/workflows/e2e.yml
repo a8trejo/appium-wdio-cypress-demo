@@ -37,9 +37,9 @@ jobs:
       # TO DO - Debug which step takes less time between this one and "Create AVD and generate snapshot for caching"
       # - name: Create AVD
       #   run: |
-      #     sdkmanager "system-images;android-23;google_apis;x86_64"
+      #     sdkmanager "system-images;android-23;google_apis;arm64-v8a"
       #     yes | sdkmanager --licenses
-      #     avdmanager create avd -n DemoAVD -k "system-images;android-33;google_apis;x86_64" -d pixel
+      #     avdmanager create avd -n DemoAVDII -k "system-images;android-33;google_apis;arm64-v8a" -d pixel
       
       - name: Create AVD and generate snapshot for caching
         uses: reactivecircus/android-emulator-runner@v2
@@ -47,7 +47,7 @@ jobs:
           avd-name: DemoAVD
           api-level: 33
           target: google_apis
-          arch: x86_64
+          arch: arm64-v8a
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
