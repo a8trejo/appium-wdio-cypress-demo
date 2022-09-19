@@ -66,10 +66,11 @@ Cypress.Commands.add('startAndroidAVD', (androidAVD) => {
 
     let avdTimeout = (Cypress.env("TEST_TRIGGER") === 'local') ? 60000 : 500000
     Cypress.config('taskTimeout', avdTimeout)
-
+    cy.exec('adb kill-server', { failOnNonZeroExit: false})
     cy.task('androidAVDStart', {startCmd:avdStartCmd, checkCmd:avdCheckCmd}).then((avdMsg) => {
         expect(avdMsg).to.include("Success")
     })
+    cy.exec('adb start-server', { failOnNonZeroExit: false})
 });
 
 Cypress.Commands.add('startAppiumServer', () => {
