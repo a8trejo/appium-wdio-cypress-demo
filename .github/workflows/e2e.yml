@@ -34,11 +34,11 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      # TO DO - Debug which step takes less time between this one and "Create AVD and generate snapshot for caching"
-      # - name: Create AVD
-      #   run: |
-      #     sdkmanager "system-images;android-23;google_apis;x86_64"
-      #     yes | sdkmanager --licenses
+      # SDK SetUp https://gist.github.com/alvr/8db356880447d2c4bbe948ea92d22c23
+       - name: Android SDK Extras
+         run: |
+            sdkmanager "system-images;android-33;google_apis;x86_64"
+            yes | sdkmanager --licenses
       #     avdmanager create avd -n DemoAVD -k "system-images;android-33;google_apis;x86_64" -d pixel
       
       - name: Create AVD and generate snapshot for caching
@@ -59,10 +59,9 @@ jobs:
           cd wdio/apk
           curl https://github.com/appium/appium/blob/master/packages/appium/sample-code/apps/ApiDemos-debug.apk -o ApiDemos-debug.apk
           
-      # Setting environment
+      # Setting environment, ANDROID_HOME at /Users/runner/Library/Android/sdk
       - name: Set Up Environment
         run: |
-          echo $ANDROID_HOME
           echo "APPIUM_SKIP_CHROMEDRIVER_INSTALL=1" >> $GITHUB_ENV
           echo "ANDROID_SDK_ROOT=$(echo $ANDROID_HOME)" >> $GITHUB_ENV
           echo "$ANDROID_HOME/emulator" >> $GITHUB_PATH

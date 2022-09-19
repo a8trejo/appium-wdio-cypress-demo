@@ -25,6 +25,7 @@ module.exports = defineConfig({
         "configFile": "cypress/config/reporter-configs.json"
     },
     env: {
+        "TEST_TRIGGER": "local",
         "TAGS": "not @skip",
         "expandCollapseTime": 1500,
         "HeroApp": "https://the-internet.herokuapp.com/",
@@ -41,6 +42,7 @@ module.exports = defineConfig({
 })
 
 async function setupNodeEvents(on, config) {
+  // const testTrigger = config.env.TEST_TRIGGER || 'local'
   await preprocessor.addCucumberPreprocessorPlugin(on, config);
 
   on(
@@ -95,7 +97,7 @@ function sleep(ms) {
 }
 
 async function emulatorStart(avdStartCmd, avdCheckCmd) {
-  const avdCheckAttempts = 5
+  const avdCheckAttempts = 8
   let avdOn = false
   let avdMsg
   let avdOutput
@@ -114,7 +116,7 @@ async function emulatorStart(avdStartCmd, avdCheckCmd) {
     }
   })
   while(avdOn === false && i <= avdCheckAttempts) {
-    await sleep(3000)
+    await sleep(5000)
     i++;
     exec(avdCheckCmd, (error, stdout, stderr) => {
       let checkOutput = `${avdCheckCmd}\n${stdout}`

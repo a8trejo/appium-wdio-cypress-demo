@@ -56,9 +56,10 @@ Cypress.Commands.add('startAndroidAVD', (androidAVD) => {
     const avdMode = (avdHeadless == true) ? '-no-window ':'';
     const avdPort = (androidPort == '') ? '': `-port ${androidPort}`;
     const avdBin = isLinux ? 'emulator': '"emulator.exe"'
+    const hardwareAcceleration = (Cypress.env("TEST_TRIGGER") === 'local') ? '' : '-no-snapshot -gpu swiftshader_indirect '
     
     //Example: /Users/atrejo/Library/Android/sdk/emulator/emulator -avd Pixel_4_API_26 -no-window -port 5554
-    const avdStartCmd = `${avdBin} -avd ${androidAVD} -no-boot-anim -no-audio ${avdMode} ${avdPort}`
+    const avdStartCmd = `${avdBin} -avd ${androidAVD} ${hardwareAcceleration}-no-boot-anim -no-audio ${avdMode} ${avdPort}`
     const avdCheckCmd = 'adb devices'
     cy.task('androidAVDStart', {startCmd:avdStartCmd, checkCmd:avdCheckCmd}).then((avdMsg) => {
         expect(avdMsg).to.include("Success")
