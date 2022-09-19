@@ -73,16 +73,17 @@ jobs:
           curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-darwin-amd64 -o cucumber-json-formatter
           chmod +x cucumber-json-formatter
 
-      - name: Debugging
-        run: |
-          emulator -avd DemoAVD -no-snapshot -gpu swiftshader_indirect -no-boot-anim -no-audio -no-window  -port 5554 &
-          sleep 30s
-          adb devices
+      # - name: Debugging
+      #   run: |
+      #     emulator -avd DemoAVD -no-snapshot -gpu swiftshader_indirect -no-boot-anim -no-audio -no-window  -port 5554 &
+      #     sleep 30s
+      #     adb devices
+      #     lsof -i tcp:5554
 
       #NPM Installation and Cypress execution
       - name: Cypress Execution
         uses: cypress-io/github-action@v4
-        if: ${{ false }}
+        # if: ${{ false }}
         with:
           # ci-build-id: '${{ github.job }}:${{ github.run_number }}-${{ github.run_attempt }}'
           # tag: '${{ github.job }}:${{ github.run_number }}-${{ github.run_attempt }}'

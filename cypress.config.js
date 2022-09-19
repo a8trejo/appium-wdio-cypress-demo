@@ -42,7 +42,7 @@ module.exports = defineConfig({
 })
 
 async function setupNodeEvents(on, config) {
-  // const testTrigger = config.env.TEST_TRIGGER || 'local'
+  const testTrigger = config.env.TEST_TRIGGER || 'local'
   await preprocessor.addCucumberPreprocessorPlugin(on, config);
 
   on(
@@ -63,7 +63,7 @@ async function setupNodeEvents(on, config) {
     getGithubKeys: () => {
       return githubActionsKeys;
     },
-    androidAVDStart({startCmd, checkCmd}){
+    androidAVDStart({startCmd, checkCmd, testTrigger}){
       let avdMsg = emulatorStart(startCmd, checkCmd)
       return avdMsg
     },
@@ -96,8 +96,9 @@ function sleep(ms) {
   });
 }
 
-async function emulatorStart(avdStartCmd, avdCheckCmd) {
-  const avdCheckAttempts = 8
+async function emulatorStart(avdStartCmd, avdCheckCmd, testTrigger) {
+  const avdCheckAttempts = (testTrigger === 'local')? 5 : 12
+  const checkSleep = (testTrigger === 'local')? 3000 : 15000
   let avdOn = false
   let avdMsg
   let avdOutput

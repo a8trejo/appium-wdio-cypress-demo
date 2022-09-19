@@ -60,6 +60,8 @@ Cypress.Commands.add('startAndroidAVD', (androidAVD) => {
     
     //Example: /Users/atrejo/Library/Android/sdk/emulator/emulator -avd Pixel_4_API_26 -no-window -port 5554
     const avdStartCmd = `${avdBin} -avd ${androidAVD} ${hardwareAcceleration}-no-boot-anim -no-audio ${avdMode} ${avdPort}`
+
+    // Maybe change to 'adb shell getprop sys.boot_completed'
     const avdCheckCmd = 'adb devices'
     cy.task('androidAVDStart', {startCmd:avdStartCmd, checkCmd:avdCheckCmd}).then((avdMsg) => {
         expect(avdMsg).to.include("Success")
