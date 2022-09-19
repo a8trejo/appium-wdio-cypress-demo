@@ -132,13 +132,19 @@ Cypress.Commands.add('appiumScript', (actionScript, appName) => {
     cy.logMsg(npxCommand, 'all')
     cy.exec(npxCommand , {failOnNonZeroExit : false, timeout: appiumTimeout}).then( output => {
         let summary = output.stdout.split('Run onComplete hook')[1]
-        if ( output.code == 0) {
+        
+        if ( summary.includes('1 passed') ) {
             cy.logMsg(`Appium Script Summary:\n${summary}`, 'node');
             expect(summary).to.include('1 passed');
         } else {
+            cy.logMsg("-------------------------------------------------------------", 'node')
             cy.logMsg(`Appium Script Exit code: ${output.code}`, 'all');
+            cy.logMsg(output.code, 'node')
+            cy.logMsg(output.stderr, 'node')
             cy.logMsg(output.stdout, 'node')
-            expect(summary).to.include('1 passed');
+            cy.logMsg("-------------------------------------------------------------", 'node').then(() =>{
+                expect(summary).to.include('1 passed');
+            })
         }
     });
 });

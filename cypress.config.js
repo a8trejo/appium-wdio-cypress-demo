@@ -162,7 +162,7 @@ async function appiumStart(appiumStartCmd, appiumCheckCmd) {
       console.log(`Appium Error: ${error.message}`)
     }
     // A bit noisy, remove comment for debugging
-    // console.log(appiumOutput);
+    console.log(appiumOutput);
   })
   while(appiumOn === false && i <= appiumCheckAttempts) {
     await sleep(3000)
