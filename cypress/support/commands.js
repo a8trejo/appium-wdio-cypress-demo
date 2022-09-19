@@ -63,6 +63,10 @@ Cypress.Commands.add('startAndroidAVD', (androidAVD) => {
 
     // Maybe change to 'adb shell getprop sys.boot_completed'
     const avdCheckCmd = 'adb devices'
+
+    let avdTimeout = (Cypress.env("TEST_TRIGGER") === 'local') ? 60000 : 500000
+    Cypress.config('taskTimeout', avdTimeout)
+
     cy.task('androidAVDStart', {startCmd:avdStartCmd, checkCmd:avdCheckCmd}).then((avdMsg) => {
         expect(avdMsg).to.include("Success")
     })

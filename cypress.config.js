@@ -35,7 +35,7 @@ module.exports = defineConfig({
         "appiumCapabilitiesPath": "cypress/config/appium.json",
         "androidPort": "5554",
         "apkPath": "wdio/apk",
-        "avdHeadless": true,
+        "avdHeadless": true
     },
     setupNodeEvents,
   }
@@ -97,7 +97,9 @@ function sleep(ms) {
 }
 
 async function emulatorStart(avdStartCmd, avdCheckCmd, testTrigger) {
-  const avdCheckAttempts = (testTrigger === 'local')? 5 : 12
+  console.log(`Cypress and AVD triggered by ${testTrigger}`)
+  // When running on Github Actions total timeout will be 8 minutes
+  const avdCheckAttempts = (testTrigger === 'local')? 5 : 32
   const checkSleep = (testTrigger === 'local')? 3000 : 15000
   let avdOn = false
   let avdMsg
@@ -118,7 +120,7 @@ async function emulatorStart(avdStartCmd, avdCheckCmd, testTrigger) {
     console.log(avdOutput);
   })
   while(avdOn === false && i <= avdCheckAttempts) {
-    await sleep(5000)
+    await sleep(checkSleep)
     i++;
     exec(avdCheckCmd, (error, stdout, stderr) => {
       let checkOutput = `${avdCheckCmd}\n${stdout}`
