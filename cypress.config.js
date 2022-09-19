@@ -114,6 +114,7 @@ async function emulatorStart(avdStartCmd, avdCheckCmd) {
       avdOutput = `${avdOutput}\nAVD Error: ${error.message}`
       console.log(`AVD Error: ${error.message}`);
     }
+    console.log(avdOutput);
   })
   while(avdOn === false && i <= avdCheckAttempts) {
     await sleep(5000)
@@ -134,7 +135,6 @@ async function emulatorStart(avdStartCmd, avdCheckCmd) {
     avdMsg = 'Success: Android AVD Started!!!'
   } else {
     avdMsg = "Android AVD Initialization Failed!!!!"
-    console.log(avdOutput);
   }
   console.log(avdMsg)
   return avdMsg
