@@ -37,9 +37,9 @@ jobs:
       # SDK SetUp https://gist.github.com/alvr/8db356880447d2c4bbe948ea92d22c23
       # - name: Android SDK Extras
       #   run: |
-      #     sdkmanager "system-images;android-33;google_apis;x86_64" &
+      #     sdkmanager "system-images;android-33;google_apis;arm64-v8a" &
       #     yes | sdkmanager --licenses
-        # avdmanager create avd -n DemoAVD -k "system-images;android-33;google_apis;x86_64" -d pixel
+        # avdmanager create avd -n DemoAVD -k "system-images;android-33;google_apis;arm64-v8a" -d pixel
       
       - name: Create AVD and generate snapshot for caching
         uses: reactivecircus/android-emulator-runner@v2
@@ -58,11 +58,6 @@ jobs:
           mkdir wdio/apk
           cd wdio/apk
           curl https://github.com/appium/appium/blob/master/packages/appium/sample-code/apps/ApiDemos-debug.apk -o ApiDemos-debug.apk
-    
-      - name: Debugging
-        run: |
-          echo | sdkmanager --update --include_obsolete
-          emulator -avd DemoAVD -no-snapshot -gpu swiftshader_indirect -no-boot-anim -no-audio -no-window  -port 5554
           
       # Setting environment, ANDROID_HOME at /Users/runner/Library/Android/sdk
       - name: Set Up Environment
@@ -78,6 +73,10 @@ jobs:
           curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-darwin-amd64 -o cucumber-json-formatter
           chmod +x cucumber-json-formatter
 
+      - name: Debugging
+        run: |
+          emulator -avd DemoAVD -no-snapshot -gpu swiftshader_indirect -no-boot-anim -no-audio -no-window  -port 5554
+          
       #NPM Installation and Cypress execution
       - name: Cypress Execution
         uses: cypress-io/github-action@v4
