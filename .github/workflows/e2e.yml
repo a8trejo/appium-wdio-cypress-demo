@@ -75,8 +75,10 @@ jobs:
 
       - name: Debugging
         run: |
-          emulator -avd DemoAVD -no-snapshot -gpu swiftshader_indirect -no-boot-anim -no-audio -no-window  -port 5554
-          
+          emulator -avd DemoAVD -no-snapshot -gpu swiftshader_indirect -no-boot-anim -no-audio -no-window  -port 5554 &
+          sleep 30s
+          adb devices
+
       #NPM Installation and Cypress execution
       - name: Cypress Execution
         uses: cypress-io/github-action@v4
