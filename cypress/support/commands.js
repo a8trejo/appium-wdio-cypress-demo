@@ -74,7 +74,7 @@ Cypress.Commands.add('startAndroidAVD', (androidAVD) => {
 
 Cypress.Commands.add('startAppiumServer', () => {
     let serverPort = (appiumPort === '') ? '' : `-p ${appiumPort}`;
-    const appiumCmd = `appium ${serverPort} &`
+    const appiumCmd = `npx appium ${serverPort} &`
     let portCmd = isLinux ? `lsof -i :${appiumPort}` : `netstat -noa | findStr "${appiumPort}"`
     cy.task('appiumServerStart', {startCmd:appiumCmd, checkCmd:portCmd}).then((appiumMsg) => {
         expect(appiumMsg).to.include("Success")

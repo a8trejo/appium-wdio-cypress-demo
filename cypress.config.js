@@ -63,8 +63,8 @@ async function setupNodeEvents(on, config) {
     getGithubKeys: () => {
       return githubActionsKeys;
     },
-    androidAVDStart({startCmd, checkCmd, testTrigger}){
-      let avdMsg = emulatorStart(startCmd, checkCmd)
+    androidAVDStart({startCmd, checkCmd}){
+      let avdMsg = emulatorStart(startCmd, checkCmd, testTrigger)
       return avdMsg
     },
 
