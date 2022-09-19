@@ -94,6 +94,7 @@ https://github.com/appium/appium-inspector/releases
 `npx wdio run ./wdio.conf.js --spec "SPEC_NAME.js" --mochaOpts.grep "warning"`
 
 #### Misc
+https://gist.github.com/alvr/8db356880447d2c4bbe948ea92d22c23
 https://stackoverflow.com/questions/38399465/how-to-get-list-of-all-timezones-in-javascript
 https://webdriver.io/docs/api/element/touchAction
 

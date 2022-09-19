@@ -27,7 +27,6 @@ module.exports = defineConfig({
     env: {
         "TAGS": "not @skip",
         "expandCollapseTime": 1500,
-        "ACTION_TEST": "[SHOULD BE OVERWRITTEN]",
         "HeroApp": "https://the-internet.herokuapp.com/",
         "appiumTimeout": 60000,
         "appiumRetries": 3,
